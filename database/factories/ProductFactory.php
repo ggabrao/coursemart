@@ -17,7 +17,9 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => 1,
+            'name' => fake()->randomElement(['Windows', 'Linux', 'MacOS', 'Android', 'iOS']),
+            'description' => 'Lorem ipsum',
         ];
     }
 }
