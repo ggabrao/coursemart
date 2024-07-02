@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'name' => fake()->randomElement(['Windows', 'Linux', 'MacOS', 'Android', 'iOS']),
+            'name' => fake()->unique()->randomElement(['Windows', 'Linux', 'MacOS', 'Android', 'iOS']),
             'description' => 'Lorem ipsum',
         ];
     }
