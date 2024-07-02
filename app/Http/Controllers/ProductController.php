@@ -22,13 +22,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreProductRequest $request) //todo: estudar FormRequest
     {
 
     }
