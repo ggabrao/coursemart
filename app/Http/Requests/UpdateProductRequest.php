@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; //todo: arrumar essa permissão
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'min:2', 'max:255'],
+            'description' => ['required', 'max:255'],
         ];
     }
 }

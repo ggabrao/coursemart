@@ -13,6 +13,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {{--User Profile Card--}}
                         @foreach($products as $product)
+
                             <div
                                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex justify-end px-4 pt-4">
@@ -25,22 +26,21 @@
                                         </svg>
                                     </button>
                                     <!-- Dropdown menu -->
+                                    @if($product->user->is(auth()->user()))
                                     <div id="{{$product -> id}}-dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                         <ul class="py-2" aria-labelledby="{{$product -> id}}-dropdownButton">
                                             <li>
-                                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
+                                                <a href="{{route('products.edit', $product)}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
                                             </li>
                                             <li>
                                                 <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
                                             </li>
                                         </ul>
                                     </div>
+                                    @endif
                                 </div>
-                                <div class="flex justify-end px-4 pt-4">
-                                </div>
+
+
                                 <div class="flex flex-col items-center pb-10">
                                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{$product->name}}</h5>
                                     <span
@@ -53,6 +53,13 @@
                                            class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">View
                                             Comments</a>
                                     </div>
+                                </div>
+                                <div class="flex justify-center px-4 pt-4">
+                                    @unless ($product->created_at->eq($product->updated_at))
+                                        <div class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                                            <span class="font-medium">{{ __('New Version') }}</span>
+                                        </div>
+                                    @endunless
                                 </div>
                             </div>
                         @endforeach {{--End Card--}}
