@@ -34,7 +34,6 @@
                                         </svg>
                                     </button>
                                     <!-- Dropdown menu -->
-                                    @if($product->user->is(auth()->user()))
                                     <div id="{{$product -> id}}-dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                         <ul class="py-2" aria-labelledby="{{$product -> id}}-dropdownButton">
                                             <li>
@@ -49,7 +48,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    @endif
                                 </div>
 
 

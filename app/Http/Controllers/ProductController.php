@@ -31,15 +31,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request): RedirectResponse
-        //todo: conferir com a doc
-    {
+    public function store(StoreProductRequest $request): RedirectResponse {
         $validated = $request->validated();
 
         $request->user()->products()->create($validated);
 
         return redirect(route('dashboard'))->with('success', 'Product created successfully!');
-
     }
 
     /**
