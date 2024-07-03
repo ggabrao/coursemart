@@ -6,8 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-
-
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (session('success'))
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -25,7 +23,10 @@
 
                             <div
                                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <div class="flex justify-end px-4 pt-4">
+                                <div class="flex justify-between px-4 pt-4">
+                                    <div><span
+                                            class="text-sm text-gray-500 dark:text-gray-400">Seller id: {{$product->user_id}}</span>
+                                    </div>
                                     <button id="{{$product -> id}}-dropdownButton"
                                             data-dropdown-toggle="{{$product -> id}}-dropdown"
                                             class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
@@ -63,6 +64,7 @@
 
 
                                 <div class="flex flex-col items-center pb-10">
+
                                     <h5 class="mb-1 text-3xl font-extrabold text-gray-900 dark:text-white">{{$product->name}}</h5>
                                     <span
                                         class="text-sm text-gray-500 dark:text-gray-400">{{$product->description}}</span>
