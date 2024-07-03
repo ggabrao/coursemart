@@ -20,10 +20,12 @@ class StoreProductRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    { //todo: conferir se o string, integer e numeric são necessários visto que já posso barrá-los no html
         return [
-            'name' => 'required|min:2|max:255',
-            'description' => 'required|max:255',
+            'name' => 'required|string|min:2|max:255',
+            'description' => 'required|string|max:255',
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|numeric|decimal:2|min:0',
         ];
     }
 }

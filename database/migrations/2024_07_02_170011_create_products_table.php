@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
+            $table->integer('quantity');
+            $table->decimal('price'); //todo: verificar se esse é o melhor tipo
             $table->timestamps();
         });
     }

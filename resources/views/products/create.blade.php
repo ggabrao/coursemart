@@ -14,19 +14,19 @@
                             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
                             <form method="POST" action="{{ route('products.store') }}">
                                 @csrf
-{{--                                todo: criar componentes dos forms --}}
+                                {{--todo: criar componentes dos forms --}}
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-
                                     <div class="sm:col-span-2">
                                         <label for="name"
                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
                                             Name</label>
                                         <input type="text" name="name" id="name" value="{{ old('name') }}"
                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                               placeholder="Type product name">
-{{--                                        todo: validações html vs laravel?? --}}
+                                               placeholder="Type the product name">
+                                        {{--todo: validações html vs laravel?? --}}
                                         @error('name')
-                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{$message}}</span></p>
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                                class="font-medium">{{$message}}</span></p>
                                         @enderror
                                     </div>
 
@@ -38,7 +38,40 @@
                                                   placeholder="Your description here"
                                         ></textarea>
                                         @error('description')
-                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{$message}}</span></p>
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                                class="font-medium">{{$message}}</span></p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <label for="quantity"
+                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                        <input type="number" name="quantity" id="quantity"
+                                               value="{{ old('quantity', 1) }}"
+                                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        >
+                                        @error('quantity')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                                class="font-medium">{{$message}}</span></p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="sm:col-span-2">
+                                        <label for="price"
+                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                                $
+                                            </div>
+                                            {{--todo: conferir se essa é a melhor abordagem para decimal--}}
+                                            <input type="text" name="price" id="price" value="{{ old('price') }}"
+                                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ps-7">
+
+                                        </div>
+                                        @error('price')
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                                class="font-medium">{{$message}}</span></p>
                                         @enderror
                                     </div>
 

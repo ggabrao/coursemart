@@ -13,11 +13,13 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
+        'quantity',
+        'price'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    
+
 }
