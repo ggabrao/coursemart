@@ -6,13 +6,21 @@
     </x-slot>
 
     <div class="py-12">
+
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <span class="font-medium">{{ session('success') }}</span>
+                </div>
+            @endif
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
                     {{--Grid--}}
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {{--User Profile Card--}}
-                        @foreach($products as $product)
+                        @forelse($products as $product)
 
                             <div
                                 class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -66,7 +74,10 @@
                                     @endunless
                                 </div>
                             </div>
-                        @endforeach {{--End Card--}}
+
+                        @empty
+                            There are no products yet
+                        @endforelse {{--End Card--}}
                     </div> {{--End Grid--}}
 
                 </div>

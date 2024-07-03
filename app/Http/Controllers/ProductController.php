@@ -39,7 +39,7 @@ class ProductController extends Controller
         $request->user()->products()->create($validated);
 
         return redirect(route('dashboard'))->with('success', 'Product created successfully!');
-        //todo: adicionar essa msg no template
+
     }
 
     /**
@@ -71,8 +71,8 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect(route('dashboard'))->with('success', 'Product updated');
-        //todo: adicionar essa msg no template
+        return redirect(route('dashboard'))->with('success', "Product $product->name updated successfully!");
+
     }
 
     /**
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect(route('dashboard'))->with('success', 'Product deleted');
-        //todo: adicionar essa msg no template
+        return redirect(route('dashboard'))->with('success', "Product $product->name deleted successfully!");
+
     }
 }
