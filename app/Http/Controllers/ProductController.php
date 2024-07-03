@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -15,22 +16,29 @@ class ProductController extends Controller
     public function index(): View
     {
         return view('dashboard', ['products' => Product::with('user')->latest()->get()]);
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-
+        return view('products.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request) //todo: estudar FormRequest
+    public function store(StoreProductRequest $request): RedirectResponse
+        //todo: conferir com a doc
     {
+        $validated = $request->validated();
 
+        $request->user()->products()->create($validated);
+
+        return redirect()->route('dashboard')->with('success', 'Product created successfully!');
+        //todo: adicionar essa msg no template
     }
 
     /**
