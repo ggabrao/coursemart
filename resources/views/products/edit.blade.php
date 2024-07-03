@@ -15,7 +15,7 @@
                             <form method="POST" action="{{ route('products.update', $product) }}">
                                 @csrf
                                 @method('patch')
-                                {{-- todo: criar componentes dos forms --}}
+                                {{-- todo: aplicar componentes dos forms --}}
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
 
                                     <div class="sm:col-span-2">
