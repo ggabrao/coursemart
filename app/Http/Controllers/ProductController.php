@@ -80,6 +80,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Gate::authorize('delete', $product);
+
+        $product->delete();
+
+        return redirect(route('dashboard'))->with('success', 'Product deleted');
+        //todo: adicionar essa msg no template
     }
 }
