@@ -129,13 +129,15 @@
 
                                     </div>
                                 </div>
-
-                                @if ($product->created_at->eq($product->updated_at) and $product->user_id !== Auth::id())
-                                    <div
-                                        class="p-2 mb-4 text-md text-yellow-800 rounded-sm bg-yellow-200 dark:bg-gray-800 dark:text-yellow-300 text-center"
-                                    >
-                                        <span class="font-extrabold">{{ __('Recently updated!') }}</span>
-                                    </div>
+                                {{-- todo: tentar simplificar essa lógica--}}
+                                @if($product->user_id !== Auth::id())
+                                    @unless ($product->created_at->eq($product->updated_at))
+                                        <div
+                                            class="p-2 mb-4 text-md text-yellow-800 rounded-sm bg-yellow-200 dark:bg-gray-800 dark:text-yellow-300 text-center"
+                                        >
+                                            <span class="font-extrabold">{{ __('Recently updated!') }}</span>
+                                        </div>
+                                    @endunless
                                 @endif
 
                             </div>
