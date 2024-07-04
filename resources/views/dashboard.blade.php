@@ -80,7 +80,7 @@
                                     <span
                                         class="text-sm text-gray-500 dark:text-gray-400">{{$product->description}}</span>
                                     <span
-                                        class="text-4xl font-normal tracking-tight mt-10">$ {{$product->price}}</span>
+                                        class="text-4xl font-normal tracking-tight mt-10">$ {{number_format($product->price, 2)}}</span>
                                     <span
                                         class="text-xl font-bold tracking-tight text-red-500 mt-3 ">In stock: {{$product->quantity}} un.</span>
 

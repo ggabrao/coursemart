@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('description');
             $table->integer('quantity');
-            $table->decimal('price'); //todo: verificar se esse é o melhor tipo
+            $table->decimal('price');
             $table->timestamps();
         });
     }
