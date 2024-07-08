@@ -15,7 +15,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard');
 
-    Route::resource('products', ProductController::class)->except('index');
+    Route::resource('products', ProductController::class)->except('index'); //todo: conferir esse except
 
     Route::view('/cart', 'cart')->name('cart');
 

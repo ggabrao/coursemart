@@ -16,8 +16,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view('dashboard', ['products' => Product::with('user')->latest()->get()]);
-
+        return view('dashboard', ['products' => Product::with('user')->latest()->get()]); //todo:implementar paginação e entender essa lógica
     }
 
     /**
@@ -31,7 +30,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request): RedirectResponse {
+    public function store(StoreProductRequest $request): RedirectResponse
+    {
         $validated = $request->validated();
 
         $request->user()->products()->create($validated);
