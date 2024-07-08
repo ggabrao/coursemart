@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        $request->user()->products()->create($validated);
+        $request->user()->products()->create($validated); //todo: entender por que create ao invés de save
 
         return redirect(route('dashboard'))->with('success', 'Product created successfully!');
     }
