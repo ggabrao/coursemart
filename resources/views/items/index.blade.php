@@ -28,7 +28,7 @@
 
                                 <div class="w-full md:max-w-sm lg:max-w-md">
                                     <span
-                                        class="font-medium text-gray-900 hover:underline dark:text-white">  </span>
+                                        class="font-medium text-gray-900 hover:underline dark:text-white"> {{$item->products}} </span>
                                 </div>
                             </div>
 

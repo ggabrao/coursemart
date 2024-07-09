@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Item;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,9 @@ class ItemController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
-        $request->user()->items()->create($request->all());
+        $product = Product::findOrFail($request->get('product_id'));
+        $item = $request->user()->items()->create($request->all());
+        $product->items()->save($item);
 
         return redirect(route('dashboard'))->with('success', 'Product added to cart!');
     }

@@ -88,6 +88,9 @@
                                         <form method="POST" action="{{ route('items.store') }}"
                                               class="max-w-xs mx-auto">
                                             @csrf
+                                            {{--todo: avaliar melhorar essa lógica--}}
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}"/>
+
                                             @unless($product->user_id === Auth::id())
 
                                                 <input type="number" name="quantity">
