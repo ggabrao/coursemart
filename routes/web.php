@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard');
 
     Route::resource('products', ProductController::class)->except('index'); //todo: conferir esse except
-
-    Route::resource('carts', CartController::class);
+    
+    Route::resource('items', ItemController::class);
 });
 
 

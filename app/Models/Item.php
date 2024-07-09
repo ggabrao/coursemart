@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Product extends Model
+class Item extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'quantity',
-        'price'
+        'quantity'
     ];
 
     public function user(): BelongsTo
@@ -23,9 +20,8 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items(): BelongsToMany
+    public function product(): HasOne
     {
-        return $this->belongsToMany(Item::class);
+        return $this->hasOne(Product::class);
     }
-
 }
