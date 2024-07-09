@@ -19,6 +19,13 @@ return new class extends Migration {
             $table->decimal('price');
             $table->timestamps();
         });
+
+        Schema::create('carts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->decimal('total');
+            $table->timestamps();
+        });
     }
 
     /**

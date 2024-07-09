@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', ProductController::class)->except('index'); //todo: conferir esse except
 
-    Route::view('/cart', 'cart')->name('cart');
-
+    Route::resource('carts', CartController::class);
 });
+
 
 require __DIR__ . '/auth.php';
