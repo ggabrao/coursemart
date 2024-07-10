@@ -34,8 +34,8 @@ class ItemController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $product = Product::findOrFail($request->get('product_id'));
-        $item = $request->user()->items()->create($request->all());
-        $product->items()->save($item);
+        
+        $request->user()->items()->create($request->all())->products()->attach($product->id);
 
         return redirect(route('dashboard'))->with('success', 'Product added to cart!');
     }

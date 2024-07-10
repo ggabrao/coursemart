@@ -17,18 +17,11 @@
                         <div class="flex flex-wrap items-center space-y-4 p-6 sm:gap-6 sm:space-y-0 md:justify-between">
                             <div
                                 class="w-full items-center space-y-4 sm:flex sm:space-x-6 sm:space-y-0 md:max-w-md lg:max-w-lg">
-                                <a href="#" class="block aspect-square w-20 shrink-0">
-                                    <img class="h-full w-full dark:hidden"
-                                         src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                                         alt="imac image"/>
-                                    <img class="hidden h-full w-full dark:block"
-                                         src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                                         alt="imac image"/>
-                                </a>
+
 
                                 <div class="w-full md:max-w-sm lg:max-w-md">
                                     <span
-                                        class="font-medium text-gray-900 hover:underline dark:text-white"> {{$item->products}} </span>
+                                        class="font-medium text-gray-900 hover:underline dark:text-white"> {{$item->products->value('name')}} </span>
                                 </div>
                             </div>
 
@@ -37,7 +30,7 @@
                             </div>
 
                             <div class="md:w-24 md:text-right">
-                                <p class="text-base font-bold text-gray-900 dark:text-white">$1,499</p>
+                                <p class="text-base font-bold text-gray-900 dark:text-white">{{$item->products->value('price')}}</p>
                             </div>
                         </div>
                     @endforeach
