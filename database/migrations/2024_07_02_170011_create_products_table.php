@@ -2,6 +2,7 @@
 
 use App\Models\Item;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,18 +22,18 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
         });
-        //USER vs ITEM => (Rule: each USER can have many ITEMS. Each ITEM is unique to each USER)
-        //ITEM vs PRODUCT (Rule: Each ITEM has one PRODUCT. Each PRODUCT belongs to many ITEMS from different users)
+        //USER vs ITEM => (Rule: A user HAS MANY items. An item BELONGS TO a USER)
+        //ITEM vs PRODUCT (Rule: A item HAS ONE product. A product BELONGS TO MANY items)
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
             $table->integer('quantity');
@@ -54,6 +55,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('products');
+        Schema::dropIfExists('items');
+        Schema::dropIfExists('item_product');
     }
 };
