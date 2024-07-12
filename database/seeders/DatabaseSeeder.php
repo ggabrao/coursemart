@@ -32,5 +32,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'secret123',
             'remember_token' => Str::random(10),
         ]);
+
+        $this->call(ProductSeeder::class);
+
+        //todo: criar um método melhor de criar o Product vinculado ao User. Atualmente, o user_id em Product está hard coded para os dois usuários existentes
     }
 }
