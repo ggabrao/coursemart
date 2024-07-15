@@ -12,8 +12,7 @@
                      role="alert">
                     <span class="font-medium">{{ session('success') }}</span>
                 </div>
-            @endif
-            @if (session('error'))
+            @elseif(session('error'))
                 <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                      role="alert">
                     <span class="font-medium">{{ session('error') }}</span>
@@ -41,20 +40,19 @@
                                             class="text-sm text-gray-500 dark:text-gray-400">Seller Id: {{$product->user_id}}
                                         </span>
                                     @endif
-
-                                    <button id="{{$product -> id}}-dropdownButton"
-                                            data-dropdown-toggle="{{$product -> id}}-dropdown"
-                                            class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
-                                            type="button">
-                                        <span class="sr-only">Open dropdown</span>
-                                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                             fill="currentColor" viewBox="0 0 16 3">
-                                            <path
-                                                d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                                        </svg>
-                                    </button>
-                                    <!-- Dropdown menu -->
-                                    @if($product->user->is(auth()->user()))
+                                    @can('edit', $product)
+                                        <button id="{{$product -> id}}-dropdownButton"
+                                                data-dropdown-toggle="{{$product -> id}}-dropdown"
+                                                class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                                                type="button">
+                                            <span class="sr-only">Open dropdown</span>
+                                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                 fill="currentColor" viewBox="0 0 16 3">
+                                                <path
+                                                    d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                                            </svg>
+                                        </button>
+                                        <!-- Dropdown menu -->
                                         <div id="{{$product -> id}}-dropdown"
                                              class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                                             <ul class="py-2" aria-labelledby="{{$product -> id}}-dropdownButton">
@@ -74,7 +72,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    @endif
+                                    @endcan
                                 </div>
 
 
@@ -95,8 +93,8 @@
                                             {{--todo: avaliar melhorar essa lógica--}}
                                             <input type="hidden" name="product_id" value="{{ $product->id }}"/>
 
-                                            @unless($product->user_id === Auth::id())
-                                                @if($product->quantity>0)
+                                            @cannot('edit', $product)
+                                                @unless($product->quantity===0)
                                                     <label for="{{$product -> id}}-counter-input"
                                                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Select
                                                         a
@@ -148,7 +146,7 @@
                                         <span
                                             class="block text-2xl font-bold tracking-tight text-red-500 p-3 uppercase text-center mt-14">Sold out</span>
                                                     </div>
-                                                @endif
+                                                @endcannot
                                             @endunless
                                         </form>
                                     </div>

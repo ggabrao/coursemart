@@ -6,7 +6,6 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -52,8 +51,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        Gate::authorize('update', $product);
-
         return view('products.edit', ['product' => $product]);
     }
 
@@ -62,13 +59,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        Gate::authorize('update', $product);
 
         $validated = $request->validated();
 
         $product->update($validated);
 
-        return redirect(route('dashboard'))->with('success', "Product $product->name updated successfully!");
+        return redirect(route('dashboard'))->with('success', "Product updated successfully!");
 
     }
 
@@ -77,11 +73,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Gate::authorize('delete', $product);
-
         $product->delete();
 
-        return redirect(route('dashboard'))->with('success', "Product $product->name deleted successfully!");
+        return redirect(route('dashboard'))->with('success', "Product deleted successfully!");
 
     }
 }
