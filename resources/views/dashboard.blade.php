@@ -32,7 +32,7 @@
                                 <div class="flex justify-between px-4 pt-4">
                                     @if($product->user_id === Auth::id())
                                         <div
-                                            class="p-1 text-msd text-green-800 rounded-md bg-green-200 dark:bg-gray-800 dark:text-yellow-300 text-center"
+                                            class="p-1 text-msd text-purple-800 rounded-md bg-purple-200 dark:bg-purple-800 dark:text-purple-300 text-center"
                                         >
                                             <span class="font-bold">{{ __('Your product') }}</span>
                                         </div>
