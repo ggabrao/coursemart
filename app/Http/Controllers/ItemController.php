@@ -19,13 +19,6 @@ class ItemController extends Controller
         return view('items.index', ['items' => Item::where('user_id', Auth::id())->get()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,44 +32,12 @@ class ItemController extends Controller
             return redirect(route('dashboard'))->with('error', 'Invalid quantity');
 
         } else {
-            
+
             $request->user()->items()->create($request->all())->products()->attach($product->id);
 
             $product->update(['quantity' => $product->quantity - $request->get('quantity')]);
 
             return redirect(route('dashboard'))->with('success', 'Product added to cart');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Item $item)
-    {
-        //
     }
 }
