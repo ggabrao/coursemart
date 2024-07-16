@@ -38,7 +38,7 @@ class ProductPosted extends Mailable
     {
         return new Content(
             view: 'mail.product-posted',
-            with: ['name' => $this->product->name, 'user' => $this->product->user->name]
+            with: ['name' => $this->product->name, 'user' => $this->product->user->name] //todo: ver essa observação dos magic methods
         );
     }
 
