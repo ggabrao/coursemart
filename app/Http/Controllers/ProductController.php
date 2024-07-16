@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Mail\ProductPosted;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -33,7 +35,9 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        $request->user()->products()->create($validated);
+        $product = $request->user()->products()->create($validated);
+
+        Mail::to($product->user)->queue(new ProductPosted($product));
 
         return redirect(route('dashboard'))->with('success', 'Product created successfully!');
     }
