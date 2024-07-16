@@ -16,7 +16,7 @@ class ProductPosted extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Product $product)
+    public function __construct(protected Product $product)
     {
         //
     }
@@ -38,7 +38,7 @@ class ProductPosted extends Mailable
     {
         return new Content(
             view: 'mail.product-posted',
-
+            with: ['name' => $this->product->name, 'user' => $this->product->user->name]
         );
     }
 

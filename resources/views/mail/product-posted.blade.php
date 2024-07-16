@@ -1,5 +1,5 @@
-Hello "{{$product->user->name}}",
+Hello "{{$user}}",
 
-Your product "{{$product->name}}" has been successfully posted.
+Your product "{{$name}}" has been successfully posted.
 
 Thank you!
