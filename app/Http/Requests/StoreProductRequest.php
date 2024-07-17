@@ -15,10 +15,10 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     { //todo: entender melhor como funciona o sistema de validações html vs laravel, pra saber do uso de string e numeric
         return [
-            'name' => 'required|string|min:2|max:255',
-            'description' => 'required|string|max:255',
-            'quantity' => 'required|numeric|integer|min:1',
-            'price' => 'required|numeric|min:0',
+            'name' => 'required|string|min:2',
+            'description' => 'required|string|max:20',
+            'quantity' => 'required|numeric|integer|min:2',
+            'price' => 'required|numeric|decimal:2|min:0',
         ];
     }
 }

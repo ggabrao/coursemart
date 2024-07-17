@@ -64,8 +64,8 @@
                                                 class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
                                                 $
                                             </div>
-                                            {{--todo: conferir se essa é a melhor abordagem para decimal--}}
-                                            <input type="text" name="price" id="price" value="{{ old('price') }}"
+                                            <input type="text" name="price" id="price"
+                                                   value="{{ old('price') }}"
                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ps-7">
 
                                         </div>
