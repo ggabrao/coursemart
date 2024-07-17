@@ -4,13 +4,13 @@ use App\Models\Product;
 
 uses()->group('users');
 
-it('creates product', function () {
+it('stores product', function () {
 
     $request = [
-        'name' => fake()->name(),
-        'description' => fake()->text(),
-        'quantity' => fake()->randomNumber(),
-        'price' => fake()->randomFloat,
+        'name' => 'Test Product',
+        'description' => 'Test Description',
+        'quantity' => 5,
+        'price' => 5.99,
     ];
 
     login()->post('/products', $request);
@@ -18,13 +18,14 @@ it('creates product', function () {
     expect(Product::count())->toBe(1);
 });
 
-describe('When creating products', function () {
+describe('when creating products', function () {
     it('provides a product name', function () {
+
         $request = [
             'name' => null,
-            'description' => fake()->text(),
-            'quantity' => fake()->randomNumber(),
-            'price' => fake()->randomFloat,
+            'description' => 'Test Description',
+            'quantity' => 5,
+            'price' => 5.99,
         ];
 
         login()->post('/products', $request);
@@ -33,15 +34,36 @@ describe('When creating products', function () {
     });
 
     it('provides a product name in string type', function () {
+
         $request = [
             'name' => 'Test Product',
-            'description' => fake()->text(),
-            'quantity' => fake()->randomNumber(),
-            'price' => fake()->randomFloat,
+            'description' => 'Test Description',
+            'quantity' => 5,
+            'price' => 5.99,
         ];
 
         login()->post('/products', $request);
 
-        expect(Product::latest()->first()->name)->not->toBeNull()->toBeString();
+        expect(Product::latest()->first()->name)->not->toBeEmpty()->toBeString();
     });
 });
+
+it('stores a product with all the validations requirements', function () {
+
+    $request = [
+        'name' => 'Test Product',
+        'description' => 'Test Description',
+        'quantity' => 5,
+        'price' => 5.99,
+    ];
+
+    login()->post('/products', $request);
+
+    expect(Product::latest()->first())
+        ->name->toBeString()->not->toBeEmpty()->toHaveMinLength()
+        ->description->toBeString()->not->toBeEmpty()->toHaveMaxLength()
+        ->quantity->toBeInt()->not->toBeEmpty()->toBeGreaterThanOrEqual(2)
+        ->price->toBeNumeric()->not->toBeEmpty()->toBeGreaterThan(0);
+});
+
+
