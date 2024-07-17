@@ -4,7 +4,7 @@ use App\Models\Product;
 
 uses()->group('users');
 
-it('stores product', function () {
+it('stores a product', function () {
 
     $request = [
         'name' => 'Test Product',
@@ -66,4 +66,4 @@ it('stores a product with all the validations requirements', function () {
         ->price->toBeNumeric()->not->toBeEmpty()->toBeGreaterThan(0);
 });
 
-
+todo('this is a todo demo test');
