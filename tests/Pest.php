@@ -7,9 +7,8 @@ uses(
     Illuminate\Foundation\Testing\LazilyRefreshDatabase::class,
 )->in('Feature', 'Unit');
 
-function login()
+function login($user = null)
 {
-    $user = User::factory()->create();
-    return test()->actingAs($user);
+    return test()->actingAs($user ?? User::factory()->create());
 }
 
