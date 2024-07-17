@@ -37,7 +37,7 @@ describe('When creating products', function () {
     it('provides a product name in string type', function () {
         $user = User::factory()->create();
         $request = [
-            'name' => null,
+            'name' => 'Test Product',
             'description' => fake()->text(),
             'quantity' => fake()->randomNumber(),
             'price' => fake()->randomFloat,
