@@ -84,7 +84,7 @@
                                         class="text-4xl font-normal tracking-tight mt-10">$ {{number_format($product->price, 2)}}</span>
                                     @if($product->quantity > 0)
                                         <span
-                                            class="text-xl font-bold tracking-tight text-red-500 mt-3 ">Quantity: {{$product->quantity}} un.</span>
+                                            class="text-xl font-bold tracking-tight text-red-500 mt-3 ">Qty: {{$product->quantity}} un.</span>
                                     @endif
                                     <div class="flex flex-col mt-4 md:mt-10 justify-center text-center">
                                         <form method="POST" action="{{ route('items.store') }}"
