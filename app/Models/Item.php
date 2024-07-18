@@ -20,7 +20,7 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function products(): BelongsToMany //todo:entender por que só deu certo com essa relação, ams não com o hasOne
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
