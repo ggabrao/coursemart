@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Mail\ProductPosted;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view('dashboard', ['products' => Product::with('user')->latest()->get()]); //todo:implementar paginação e entender essa lógica
+        return view('dashboard', ['products' => Product::with('user')->latest()->get()]);
     }
 
     /**
@@ -73,5 +74,11 @@ class ProductController extends Controller
 
         return redirect(route('dashboard'))->with('success', "Product deleted successfully!");
 
+    }
+
+    public function cart(Product $product): View
+    {
+        $items = Product::find(Auth::id());
+        return view('cart', [$items]); //todo:agrupar por nome do produto
     }
 }
