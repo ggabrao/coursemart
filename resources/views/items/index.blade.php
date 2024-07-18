@@ -63,6 +63,6 @@
             </div>
         </div>
     </section>
-
+    {{--todo adicionar total no cart--}}
 
 </x-app-layout>

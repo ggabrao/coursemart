@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view('dashboard', ['products' => Product::with('user')->latest()->get()]); //todo:implementar paginação e entender essa lógica
+        return view('dashboard', ['products' => Product::with('user')->latest()->get()]); //todo:implementar paginação
     }
 
     /**
