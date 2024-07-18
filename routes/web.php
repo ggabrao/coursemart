@@ -19,7 +19,6 @@ Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard')
 Route::resource('items', ItemController::class)->middleware('auth');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products', [ProductController::class, 'create'])->name('products.create');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit')->can('edit', 'product');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
