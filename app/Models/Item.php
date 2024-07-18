@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Product extends Model
+class Item extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'quantity',
-        'price'
+        'quantity'
     ];
 
     public function user(): BelongsTo
@@ -23,9 +20,8 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function items(): BelongsToMany
+    public function products(): BelongsToMany //todo:entender por que só deu certo com essa relação, ams não com o hasOne
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Product::class);
     }
-
 }

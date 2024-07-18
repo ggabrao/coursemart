@@ -20,8 +20,7 @@ class ProductFactory extends Factory
             'user_id' => fake()->numberBetween(1, 2),
             'name' => fake()->randomElement(['Fruit', 'Laptop', 'Computer', 'Cable', 'Smartphone', 'Book', 'Chair']),
             'description' => fake()->text(20),
-            'stock' => fake()->numberBetween(1, 10),
-            'quantity' => null,
+            'quantity' => fake()->numberBetween(1, 10),
             'price' => fake()->randomFloat(2, 1, 1000)
         ];
     }
