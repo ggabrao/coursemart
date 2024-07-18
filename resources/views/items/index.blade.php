@@ -4,9 +4,7 @@
             {{ __('Cart') }}
         </h2>
     </x-slot>
-
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Order summary</h2>
             <div class="mt-8 space-y-6 md:space-y-8">
@@ -14,7 +12,6 @@
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead
                             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-
                         <tr>
                             <th scope="col" class="px-16 py-3">
                                 Product
@@ -36,11 +33,9 @@
                                 <td class="px-16 py-4 font-semibold text-gray-900 dark:text-white">
                                     {{$item->products->value('name')}}
                                 </td>
-
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                                     {{$item->quantity}}
                                 </td>
-
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                                     $ {{number_format($item->products->value('price'), 2)}}
                                 </td>
@@ -52,13 +47,12 @@
                                         Your cart is empty
                                     </td>
                             </tr>
-
                         @endforelse
-
-
                         </tbody>
-
                     </table>
+                </div>
+                <div>
+                    {{$items->links()}}
                 </div>
             </div>
         </div>

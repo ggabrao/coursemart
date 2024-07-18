@@ -16,9 +16,8 @@ class ItemController extends Controller
      */
     public function index(): View
     {
-        return view('items.index', ['items' => Item::where('user_id', Auth::id())->get()]); //todo - agrupar itens semelhantes
+        return view('items.index', ['items' => Item::where('user_id', Auth::id())->paginate(5)]); //todo - agrupar itens semelhantes
     }
-
 
     /**
      * Store a newly created resource in storage.
