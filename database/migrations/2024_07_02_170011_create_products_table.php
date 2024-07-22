@@ -30,7 +30,6 @@ return new class extends Migration {
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });
-        //todo: ao deletar um usuário os produtos criados por ele não estão sendo deletados
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
