@@ -31,16 +31,16 @@
                         @forelse($items as $item)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-16 py-4 font-semibold text-gray-900 dark:text-white">
-                                    {{$item->products->value('name')}}
+                                    {{$product->where('id', $item->product_id)->value('name')}}
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                                     {{$item->quantity}}
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    $ {{number_format($item->products->value('price'), 2)}}
+                                    $ {{number_format($product->where('id', $item->product_id)->value('price'), 2)}}
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                    ${{ number_format(($item->quantity) * $item->products->value('price'), 2)}}
+                                    ${{ number_format(($item->quantity) * $product->where('id', $item->product_id)->value('price'), 2)}}
                                 </td>
                                 @empty
                                     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
@@ -51,9 +51,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div>
-                    {{$items->links()}}
-                </div>
+
             </div>
         </div>
     </section>

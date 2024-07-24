@@ -15,7 +15,7 @@
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <x-form-field-edit inputName="name" inputType="text" :product="$product"/>
                         <x-form-field-edit inputName="description" inputType="text" :product="$product"/>
-                        <x-form-field-edit inputName="quantity" inputType="number" :product="$product"/>
+                        <x-form-field-edit inputName="stock" inputType="number" :product="$product"/>
                         <x-form-field-edit inputName="price" inputType="Text" :product="$product"/>
                     </div>
                     <button type="submit"

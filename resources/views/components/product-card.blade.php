@@ -53,10 +53,10 @@
             class="text-sm text-gray-500 dark:text-gray-400">{{$product->description}}</span>
         <span
             class="text-4xl font-normal tracking-tight mt-10">$ {{number_format($product->price, 2)}}</span>
-        @if($product->quantity > 0)
+        @unless($product->stock === 0)
             <span
-                class="text-xl font-bold tracking-tight text-[#FF495F] mt-3 ">Qty: {{$product->quantity}} un.</span>
-        @endif
+                class="text-xl font-bold tracking-tight text-[#FF495F] mt-3 ">Qty: {{$product->stock}} un.</span>
+        @endunless
         <div class="flex flex-col mt-4 md:mt-10 justify-center text-center">
             <form method="POST" action="{{ route('items.store') }}"
                   class="max-w-xs mx-auto">
@@ -65,7 +65,7 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}"/>
 
                 @cannot('edit', $product)
-                    @unless($product->quantity===0)
+                    @unless($product->stock===0)
                         <label for="{{$product -> id}}-counter-input"
                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Select
                             a

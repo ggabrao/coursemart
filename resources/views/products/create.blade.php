@@ -14,7 +14,7 @@
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <x-form-field inputName="name" inputType="text"/>
                         <x-form-field inputName="description" inputType="text"/>
-                        <x-form-field inputName="quantity" inputType="number"/>
+                        <x-form-field inputName="stock" inputType="number"/>
                         <x-form-field inputName="price" inputType="Text"/>
                     </div>
                     <button type="submit"

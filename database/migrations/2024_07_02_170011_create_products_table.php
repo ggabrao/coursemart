@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Item;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +12,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        //user has many item <=> item belongs to user
+        //user has many product <=> product belongs to user
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -22,31 +23,25 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
         });
-        //USER vs ITEM => (Rule: A user HAS MANY items. An item BELONGS TO a USER)
-        //ITEM vs PRODUCT (Rule: A item HAS ONE product. A product BELONGS TO MANY items)
+
+
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });
+
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
-            $table->integer('quantity');
+            $table->integer('stock')->nullable();
             $table->decimal('price');
             $table->timestamps();
         });
-
-        Schema::create('item_product', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Item::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
-            $table->timestamps();
-        });
-
     }
 
     /**
@@ -57,6 +52,5 @@ return new class extends Migration {
         Schema::dropIfExists('users');
         Schema::dropIfExists('products');
         Schema::dropIfExists('items');
-        Schema::dropIfExists('item_product');
     }
 };

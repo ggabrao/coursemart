@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProductRequest extends FormRequest
 {
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -17,7 +17,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => 'required|string|min:2|max:255',
             'description' => 'required|string|max:255',
-            'quantity' => 'required|numeric|integer|min:1',
+            'stock' => 'required|numeric|integer|min:1',
             'price' => 'required|numeric|min:0',
         ];
     }
