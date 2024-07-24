@@ -22,8 +22,7 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
         });
-        //USER vs ITEM => (Rule: A user HAS MANY items. An item BELONGS TO a USER)
-        //ITEM vs PRODUCT (Rule: A item HAS ONE product. A product BELONGS TO MANY items)
+
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
