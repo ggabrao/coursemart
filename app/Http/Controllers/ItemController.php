@@ -16,7 +16,7 @@ class ItemController extends Controller
      */
     public function index(): View
     {
-        return view('items.index', ['items' => Item::where('user_id', Auth::id())->get(), 'product' => Product::all()]);
+        return view('items.index', ['items' => Item::where('user_id', Auth::id())->paginate(5)]); //todo - agrupar itens semelhantes
     }
 
     /**
@@ -26,15 +26,15 @@ class ItemController extends Controller
     {
         $product = Product::findOrFail($request->get('product_id'));
 
-        if ($request->get('stock') > $product->stock or $request->get('quantity') <= 0) {
+        if ($request->get('quantity') > $product->quantity or $request->get('quantity') <= 0) {
 
             return redirect(route('dashboard'))->with('error', 'Invalid quantity');
 
         } else {
 
-            $request->user()->items()->create($request->all());
+            $request->user()->items()->create($request->all())->products()->attach($product->id);
 
-            $product->update(['stock' => $product->stock - $request->get('quantity')]);
+            $product->update(['quantity' => $product->quantity - $request->get('quantity')]);
 
             return redirect(route('dashboard'))->with('success', 'Product added to cart');
         }
