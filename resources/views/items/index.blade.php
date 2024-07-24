@@ -48,15 +48,21 @@
                                     </td>
                             </tr>
                         @endforelse
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-16 py-4 font-semibold text-gray-900 dark:text-white">
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                            </td>
+                            <td class="px-1 py-4 font-bold text-red-600 dark:text-white">
+                                Total: ${{number_format($total,2)}}
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
-                </div>
-                <div>
-                    {{$items->links()}}
                 </div>
             </div>
         </div>
     </section>
-    {{--todo adicionar total no cart--}}
-
 </x-app-layout>

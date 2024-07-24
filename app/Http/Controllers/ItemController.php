@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ItemController extends Controller
@@ -16,7 +17,13 @@ class ItemController extends Controller
      */
     public function index(): View
     {
-        return view('items.index', ['items' => Item::where('user_id', Auth::id())->paginate(5)]); //todo - agrupar itens semelhantes
+        $total = DB::table('items')
+            ->join('item_product', 'items.id', '=', 'item_product.item_id')
+            ->join('products', 'item_product.product_id', '=', 'products.id')
+            ->select('items.id', 'items.quantity', 'products.price', DB::raw('(items.quantity * products.price) AS subtotal'))
+            ->get()->sum('subtotal');
+
+        return view('items.index', ['items' => Item::where('user_id', Auth::id())->with('products')->get(), 'total' => $total]); //todo - agrupar itens semelhantes
     }
 
     /**
