@@ -23,12 +23,15 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+        //USERS vs ITENS -> ONE TO MANY
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });
+
+//        ITEM VS PRODUCTS -> MANY TO MANY
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
