@@ -31,7 +31,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-//        ITEM VS PRODUCTS -> MANY TO MANY
+        //USER VS PRODUCTS -> ONE TO MANY
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
@@ -42,13 +42,13 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+        //ITEM VS PRODUCTS -> MANY TO MANY
         Schema::create('item_product', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Item::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
-
     }
 
     /**
