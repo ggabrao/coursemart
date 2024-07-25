@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Item;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +16,17 @@ class ItemController extends Controller
      */
     public function index(): View
     {
-        $total = DB::table('items')
+        $items = DB::table('items')
             ->join('item_product', 'items.id', '=', 'item_product.item_id')
             ->join('products', 'item_product.product_id', '=', 'products.id')
-            ->select('items.id', 'items.quantity', 'products.price', DB::raw('(items.quantity * products.price) AS subtotal'))
-            ->get()->sum('subtotal');
+            ->select('products.id', 'products.name', DB::raw('SUM(items.quantity) AS total_quantity'), 'products.price', DB::raw('(SUM(items.quantity) * products.price) AS subtotal'))
+            ->where('items.user_id', Auth::id())
+            ->groupBy('products.id')
+            ->get();
 
-        return view('items.index', ['items' => Item::where('user_id', Auth::id())->with('products')->get(), 'total' => $total]); //todo - agrupar itens semelhantes
+        $total = $items->sum('subtotal');
+
+        return view('items.index', ['items' => $items, 'total' => $total]);
     }
 
     /**
