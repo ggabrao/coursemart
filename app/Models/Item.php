@@ -20,7 +20,7 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function products(): belongsToMany
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
