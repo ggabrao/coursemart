@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        //USERS vs ITENS -> ONE TO MANY
+        //USERS vs ITEMS -> ONE TO MANY
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();

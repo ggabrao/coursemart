@@ -55,7 +55,7 @@
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                             </td>
-                            @unless(!$items)
+                            @unless($items)
                                 <td class="px-1 py-4 font-bold text-red-600 dark:text-white">
                                     Total: ${{number_format($total,2)}}
                                 </td>
